@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Quest ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(135deg,#ffd6e7,#ffeef5);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,.1);
+max-width:500px;
+}
+
+button{
+padding:15px 25px;
+border:none;
+border-radius:15px;
+background:#ff5c8a;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+h1{
+color:#ff4f81;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="page1">
+<h1>🎂 Happy Birthday My Love 🎂</h1>
+<p>กดเริ่มต้นการผจญภัยแห่งความรัก</p>
+<button onclick="nextPage(2)">เริ่มเลย ❤️</button>
+</div>
+
+<div class="card" id="page2" style="display:none">
+<h1>🎂 เค้กวันเกิด</h1>
+<p>กดที่เค้กเพื่อไปต่อ</p>
+<button onclick="nextPage(3)">🎂</button>
+</div>
+
+<div class="card" id="page3" style="display:none">
+<h1>💌 จดหมายถึงเธอ</h1>
+<p>กดซองจดหมาย</p>
+<button onclick="nextPage(4)">💌</button>
+</div>
+
+<div class="card" id="page4" style="display:none">
+<h1>💖 Happy Birthday 💖</h1>
+
+<p>
+ขอให้เธอมีความสุขมากๆ ร่างกายแข็งแรง
+ประสบความสำเร็จตามที่ต้องการ
+มีรอยยิ้มในทุกๆ วัน
+</p>
+
+<p>
+ตอนนี้เธอมีเค้านะ
+เธอไม่ต้องโดดเดี่ยวอีกแล้ว
+เค้าจะอยู่ข้างๆ เธอเสมอ ❤️
+</p>
+
+<h2>รักเธอที่สุด 💕</h2>
+</div>
+
+<script>
+function nextPage(page){
+document.querySelectorAll(".card").forEach(card=>{
+card.style.display="none";
+});
+document.getElementById("page"+page).style.display="block";
+}
+</script>
+
+</body>
+</html>
