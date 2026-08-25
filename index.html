@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday My Love 🌻🩷</title>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffdce8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 600px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .page {
+      display: none;
+      position: relative;
+      width: 100%;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* QR จริง วางทับ QR ตัวอย่างบนหน้า 1 */
+    #realQR {
+      position: absolute;
+      left: 21%;
+      bottom: 17%;
+      width: 18%;
+      aspect-ratio: 1;
+      background: white;
+      padding: 6px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #realQR img,
+    #realQR canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .qr-text {
+      position: absolute;
+      left: 13%;
+      bottom: 9%;
+      width: 34%;
+      font-size: 11px;
+      color: #8b3d56;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #ff8faf;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .hint {
+      margin-top: 10px;
+      color: #9b526a;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- หน้า 1 -->
+  <div class="page active" id="page1">
+    <img src="birthday_page_1.png" alt="Happy Birthday My Love">
+
+    <div id="realQR"></div>
+    <div class="qr-text">สแกนเพื่อเปิดการ์ดเลยนะคะ 🩷</div>
+  </div>
+
+  <!-- หน้า 2 -->
+  <div class="page" id="page2">
+    <img src="birthday_page_2.png" alt="Birthday Wishes">
+  </div>
+
+  <!-- หน้า 3 -->
+  <div class="page" id="page3">
+    <img src="birthday_page_3.png" alt="Thank You">
+  </div>
+
+  <!-- หน้า 4 -->
+  <div class="page" id="page4">
+    <img src="birthday_page_4.png" alt="My Love">
+  </div>
+
+  <div class="buttons">
+    <button id="prevBtn" onclick="previousPage()">← ย้อนกลับ</button>
+    <button id="nextBtn" onclick="nextPage()">เปิดหน้าต่อไป 💕</button>
+  </div>
+
+  <div class="hint">
+    🌻 Happy Birthday My Love 🌻
+  </div>
+
+</div>
+
+<script>
+  let currentPage = 1;
+
+  function showPage(page) {
+    document.querySelectorAll(".page").forEach(function(el) {
+      el.classList.remove("active");
+    });
+
+    document.getElementById("page" + page).classList.add("active");
+
+    document.getElementById("prevBtn").style.display =
+      page === 1 ? "none" : "inline-block";
+
+    document.getElementById("nextBtn").style.display =
+      page === 4 ? "none" : "inline-block";
+
+    currentPage = page;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  function nextPage() {
+    if (currentPage < 4) {
+      showPage(currentPage + 1);
+    }
+  }
+
+  function previousPage() {
+    if (currentPage > 1) {
+      showPage(currentPage - 1);
+    }
+  }
+
+  /* สร้าง QR จริงจาก URL ของหน้าเว็บ */
+  window.onload = function() {
+    new QRCode(document.getElementById("realQR"), {
+      text: window.location.href,
+      width: 180,
+      height: 180,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    showPage(1);
+  };
+</script>
+
+</body>
+</html>
